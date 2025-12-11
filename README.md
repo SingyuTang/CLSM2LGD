@@ -13,6 +13,8 @@
 * **高精度物理模型**：内置PREM地球弹性负荷响应模型（Load Love Numbers），确保反演结果符合地球物理真实情况。  
 * **沿轨分析**：直接在卫星轨道坐标系下计算重力响应，避免了传统球谐系数截断带来的信号损失。
 
+本项目是在项目[GLDAS2LGD](https://github.com/SingyuTang/GLDAS2LGD)基础上进行修改开发，这里只对项目如何安装运行进行介绍，更多内容见[博客-基于GLDAS_CLSM_D数据计算LGD](https://singyutang.github.io/2025/12/11/%E5%9F%BA%E4%BA%8EGLDAS-NOAH-025-3H%E5%9C%9F%E5%A3%A4%E6%B9%BF%E5%BA%A6%E6%95%B0%E6%8D%AE%E5%92%8CGLDAS-CLSM-D%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97LGD%E4%BA%8C/)。
+
 # **2\. 环境依赖与安装**
 
 本项目的环境配置与基础LGD工具包一致（[GLDAS2LGD](https://github.com/SingyuTang/GLDAS2LGD)）。核心依赖如下：
@@ -157,3 +159,5 @@ python lgd_plot.py
 
 
 Ghobadi-Far, Khosro, Shin-Chan Han, Christopher M. McCullough, David N. Wiese, Richard D. Ray, Jeanne Sauber, Linus Shihora, and Henryk Dobslaw. 2022. “Along-Orbit Analysis of GRACE Follow-On Inter-Satellite Laser Ranging Measurements for Sub-Monthly Surface Mass Variations.” Journal of Geophysical Research: Solid Earth 127(2):e2021JB022983. doi:10.1029/2021JB022983.
+
+[博客-基于GLDAS_CLSM_D数据计算LGD](https://singyutang.github.io/2025/12/11/%E5%9F%BA%E4%BA%8EGLDAS-NOAH-025-3H%E5%9C%9F%E5%A3%A4%E6%B9%BF%E5%BA%A6%E6%95%B0%E6%8D%AE%E5%92%8CGLDAS-CLSM-D%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97LGD%E4%BA%8C/)
