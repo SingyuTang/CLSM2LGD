@@ -13,7 +13,7 @@
 * **高精度物理模型**：内置PREM地球弹性负荷响应模型（Load Love Numbers），确保反演结果符合地球物理真实情况。  
 * **沿轨分析**：直接在卫星轨道坐标系下计算重力响应，避免了传统球谐系数截断带来的信号损失。
 
-本项目是在项目[GLDAS2LGD](https://github.com/SingyuTang/GLDAS2LGD)基础上进行修改开发，这里只对项目如何安装运行进行介绍，更多内容见[博客-基于GLDAS_CLSM_D数据计算LGD](https://singyutang.github.io/2025/12/11/%E5%9F%BA%E4%BA%8EGLDAS-NOAH-025-3H%E5%9C%9F%E5%A3%A4%E6%B9%BF%E5%BA%A6%E6%95%B0%E6%8D%AE%E5%92%8CGLDAS-CLSM-D%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97LGD%E4%BA%8C/)。
+本项目是在项目[GLDAS2LGD](https://github.com/SingyuTang/GLDAS2LGD)基础上进行修改开发，这里只对项目如何安装运行进行介绍，更多关于原理和算法的内容介绍见[博客-基于GLDAS_CLSM_D数据计算LGD](https://singyutang.github.io/2025/12/11/%E5%9F%BA%E4%BA%8EGLDAS-NOAH-025-3H%E5%9C%9F%E5%A3%A4%E6%B9%BF%E5%BA%A6%E6%95%B0%E6%8D%AE%E5%92%8CGLDAS-CLSM-D%E6%95%B0%E6%8D%AE%E8%AE%A1%E7%AE%97LGD%E4%BA%8C/)。
 
 # **2\. 环境依赖与安装**
 
@@ -74,14 +74,14 @@ pip install numpy scipy netCDF4 matplotlib
 
 # **5\. 配置与运行指南**
 
-## **5.1 配置文件修改 (lgd\_processor.py)**
+## **5.1 配置文件修改 (lgd_processor.py)**
 
-打开 l`gd\_processor.py`，找到 `CONFIG` 字典。这是实现 **数据更换** 与 **多变量反演** 的关键配置区。
+打开 `lgd_processor.py`，找到 `CONFIG` 字典。这是实现 **数据更换** 与 **多变量反演** 的关键配置区。
 
 ```python
 CONFIG = {
         # 路径设置
-        'gldas_dir': r"I:\LGD\GLDAS_CLSM025_D_2.2_2020",
+        'gldas_dir': r"I:\LGD\GLDAS_CLSM025_D_2.2_2020",	# 指向 GLDAS CLSM v2.2 数据的存储路径
         'groops_workspace': r'G:\GROOPS\PNAS2020Workspace',
         'output_dir': r"./results_lgd/TWS_tavg",
 
@@ -95,9 +95,9 @@ CONFIG = {
 
         # * 建议：1. 分离使用： 单独使用土壤水使用RZ；单独使用地下水使用GWS
         #        2. 联合使用：CLSM 的 Profile 变量包含了整个土柱的水。在某些情况下，它可以用作总地下储量（地表以下，不是GWS）的近似，但它不如 RZ + GWS 的组合精细。
-        'variable_names': ['TWS_tavg'],
+        'variable_names': ['TWS_tavg'],  # 此处定义要反演的变量列表
 
-        # 背景场设置 (用于计算距平)
+        # 背景场设置 (用于计算距平)，LGD反映的是相对于某一基准的变化量。算法首先计算这段时间的平均场，然后用每日数据减去平均场得到质量异常
         'bgd_start': '2020-05-01',
         'bgd_end': '2020-05-31',
 
